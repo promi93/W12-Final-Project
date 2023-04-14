@@ -1,0 +1,228 @@
+body {
+  background: rgb(46, 63, 87);
+  background: linear-gradient(
+    90deg,
+    rgb(63, 86, 119) 0%,
+    rgba(33, 44, 61, 1) 42%,
+    rgb(15, 21, 29) 100%
+  );
+}
+
+/*SideBar Page*/
+.navbar.fixed-left {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 230px;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  background-color: black;
+  z-index: 2000;
+}
+
+.navbar.fixed-left .navbar-collapse .navbar-nav a {
+  color: rgb(145, 145, 145) !important;
+  transition: 0.3s;
+}
+
+.navbar.fixed-left .navbar-collapse .navbar-nav a:hover {
+  color: white !important;
+}
+
+.navbar.fixed-left .navbar-brand {
+  padding-top: 20px;
+  padding-bottom: 30px;
+  padding-left: 10px;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 3px;
+}
+
+.nav-btn {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.nav-btn a {
+  color: rgb(145, 145, 145);
+}
+
+.signup-btn {
+  background-color: white;
+  color: black;
+  border: 1px solid white;
+  border-radius: 20px;
+  width: 180px;
+  margin-bottom: 20px;
+}
+
+.signup-btn:hover {
+  color: white;
+  background-color: rgb(60, 211, 60);
+  border: 1px solid rgb(60, 211, 60);
+}
+
+.login-btn {
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+  border-radius: 20px;
+  width: 180px;
+  margin-bottom: 20px;
+}
+
+.login-btn:hover {
+  color: black;
+  background-color: white;
+}
+
+@media screen and (max-width: 936px) {
+  #sidebar {
+    display: none;
+  }
+}
+
+/* Footer Player Btn */
+
+#bgPlayer {
+  background-color: #282828;
+  height: 5.5rem;
+}
+
+#playerRemote a img {
+  width: 15px;
+  margin-right: 1.6rem;
+  margin-top: 1.2rem;
+  opacity: 0.4;
+}
+
+#playerRemote a:hover {
+  opacity: 0.2;
+  color: #282828 !important;
+}
+
+.progressPlay {
+  color: white;
+  background-color: #414141;
+  height: 3px;
+}
+
+.playBar p {
+  margin-bottom: 20px;
+  color: white;
+}
+
+/* Home Page */
+
+#m-link {
+  margin-top: 1.5rem;
+  justify-content: space-evenly;
+}
+
+#m-link a {
+  color: white;
+  font-weight: 700;
+  font-size: 12px;
+  opacity: 0.3;
+}
+
+#m-link a:hover {
+  text-decoration: none;
+  opacity: 1;
+  transition: 0.3s;
+}
+
+.img-link a p,
+#mP p a {
+  padding-top: 8px;
+  font-size: 12px;
+  color: white;
+  font-weight: 700;
+}
+
+#mP p a:hover {
+  color: rgb(138, 138, 138);
+}
+
+.img-link a:hover {
+  text-decoration: none;
+}
+
+.img-link a img:hover {
+  filter: brightness(50%);
+}
+
+#Rock,
+#pop,
+#hiphop,
+#searchResults,
+#artist-tracks {
+  color: white;
+  font-weight: 700;
+  padding-top: 50px;
+}
+
+.trackHover:hover {
+  background-color: black;
+  cursor: pointer;
+}
+
+.trackHover a {
+  text-decoration: none;
+}
+
+#btnPlay {
+  font-weight: 700;
+  width: 150px;
+  height: 50px;
+  border-radius: 50px;
+}
+
+.duration {
+  float: right;
+}
+
+.m-btn {
+  border: 1px solid #fff !important;
+  border-radius: 20px !important;
+  height: 2.2em !important;
+  width: 7em;
+  text-align: center;
+  padding: 0px 10px !important;
+}
+
+.titleMain {
+  color: white;
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+#hipHopSection {
+  margin-bottom: 7rem;
+}
+
+#follow {
+  color: white;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.album-title {
+  color: white;
+  font-weight: bold;
+  font-size: x-large;
+  margin-bottom: 0;
+}
+
+.artist-name {
+  color: white;
+}
+
+#mP img {
+  width: 200px;
+}
