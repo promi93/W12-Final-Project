@@ -11,7 +11,7 @@ const Footer = () => {
   console.log("musicPlayer", musicPlayer);
 
   return (
-    <Container fluid className="fixed-bottom pt-1" id="bgPlayer">
+    <Container className="fixed-bottom pt-1" id="bgPlayer">
       <Row>
         <Col lg={3}>
           <div className="text-light d-flex">

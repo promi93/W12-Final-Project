@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Col } from "react-bootstrap";
@@ -27,7 +28,7 @@ const SingleSong = (props) => {
     <div>
       {singleSong && (
         <Col className="text-center" key={singleSong.id}>
-          <Link to={`/album/${singleSong.id}`}>
+          <Link to={`/album/${singleSong.album.id}`}>
             <img
               className="img-fluid"
               src={singleSong.album?.cover_medium}

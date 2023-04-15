@@ -1,14 +1,9 @@
 const initialState = {
   song: [],
   playerSong: {},
-  rockClassic: [
-    "maneskin",
-    "pinguini tattici nucleari",
-    "beathles",
-    "coldpaly",
-  ],
-  popCulture: ["dua lipa", "shiva", "marco mengoni", "adele"],
-  hipHop: ["lazza", "snoopdog", "wiz khalifa", "jayz"],
+  rockClassic: ["maneskin", "rolling stone", "beathles", "coldplay"],
+  popCulture: ["sam smith", "madonna", "jovanotti", "dua lipa"],
+  hipHop: ["eminem", "snoopdog", "wiz khalifa", "jayz"],
   like: [],
 };
 

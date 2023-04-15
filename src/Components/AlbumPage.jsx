@@ -1,26 +1,29 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { AiOutlineHeart } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import Topbar from "./TopbarPage";
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 
 const AlbumPage = () => {
   const params = useParams();
   const dispatch = useDispatch();
   const [album, setAlbum] = useState();
   const [song, setSong] = useState();
-  const like = useSelector((state) => state.redBasic.like);
+  const [likes, setLikes] = useState([]);
 
-  const AlbumFetch = async () => {
+  const likedSongs = useSelector((state) => state.redBasic.likedSongs);
+
+  const albumFetch = async () => {
     try {
       const response = await fetch(
         `https://striveschool-api.herokuapp.com/api/deezer/album/${params.id}`
       );
       if (response.ok) {
         const data = await response.json();
-        setAlbum(data);
         setSong(data.tracks.data);
+        setAlbum(data);
       } else {
         console.log("album error");
       }
@@ -28,18 +31,24 @@ const AlbumPage = () => {
       console.log("album error catch");
     }
   };
-  console.log("liked", like);
 
   useEffect(() => {
-    AlbumFetch();
+    albumFetch();
   }, []);
 
-  console.log("album params", params);
-
-  console.log("album data:", album);
+  const toggleLike = (songId) => {
+    const likedIndex = likedSongs.indexOf(songId);
+    if (likedIndex !== -1) {
+      const newLikedSongs = likedSongs.filter((id) => id !== songId);
+      dispatch({ type: "UPDATE_LIKED_SONGS", payload: newLikedSongs });
+    } else {
+      const newLikedSongs = [...likedSongs, songId];
+      dispatch({ type: "UPDATE_LIKED_SONGS", payload: newLikedSongs });
+    }
+  };
 
   return (
-    <Container fluid sm={12} md={9} lg={4} className="offset-md-3 mainPage">
+    <div sm={12} md={9} lg={4} className="offset-md-3">
       <Topbar />
       <Row>
         <Col md={3} className="pt-5 text-center" id="img-container">
@@ -61,49 +70,54 @@ const AlbumPage = () => {
             <Col md={10} className="mb-5">
               {song &&
                 song.map((e) => (
-                  <>
-                    <div class="py-3 trackHover d-flex justify-content-between">
-                      <Link
-                        href="#"
-                        className="card-title trackHover px-3 col-10"
-                        style={{ color: "white" }}
-                        onClick={() =>
-                          dispatch({ type: "ADD_TO_PLAYER", payload: e })
-                        }
-                      >
-                        {e?.title}
-                      </Link>
-                      <p
-                        className="col-1"
-                        onClick={() =>
-                          dispatch({ type: "LIKE", payload: e.id })
-                        }
-                      >
-                        <AiOutlineHeart
-                          style={{
-                            color: like.map((a) =>
-                              a === e.id ? "green" : "white"
-                            ),
-                          }}
-                        />
-                      </p>
-                      <small
-                        className="duration col-1"
-                        style={{ color: "white" }}
-                      >
-                        {Math.floor(parseInt(e?.duration) / 60)}:
-                        {parseInt(e?.duration) % 60 < 10
-                          ? "0" + (parseInt(e?.duration) % 60)
-                          : parseInt(e?.duration) % 60}
-                      </small>
-                    </div>
-                  </>
+                  <div
+                    key={e.id}
+                    class="py-3 trackHover d-flex justify-content-between"
+                  >
+                    <Link
+                      to="#"
+                      className="card-title trackHover px-3 col-10"
+                      style={{ color: "white" }}
+                      onClick={() =>
+                        dispatch({ type: "ADD_TO_PLAYER", payload: e })
+                      }
+                    >
+                      {e?.title}
+                    </Link>
+                    <p
+                      className="col-1"
+                      onClick={() => toggleLike(e.id)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <AiOutlineHeart
+                        style={{
+                          color: likes.includes(e.id) ? "green" : "white",
+                        }}
+                        onClick={() => {
+                          if (likes.includes(e.id)) {
+                            setLikes(likes.filter((id) => id !== e.id));
+                          } else {
+                            setLikes([...likes, e.id]);
+                          }
+                        }}
+                      />
+                    </p>
+                    <small
+                      className="duration col-1"
+                      style={{ color: "white" }}
+                    >
+                      {Math.floor(parseInt(e?.duration) / 60)}:
+                      {parseInt(e?.duration) % 60 < 10
+                        ? "0" + (parseInt(e?.duration) % 60)
+                        : parseInt(e?.duration) % 60}
+                    </small>
+                  </div>
                 ))}
             </Col>
           </Row>
         </Col>
       </Row>
-    </Container>
+    </div>
   );
 };
 

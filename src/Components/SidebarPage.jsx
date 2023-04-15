@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { FaHome } from "react-icons/fa";
 import { BsFillBookFill } from "react-icons/bs";
 import Logo from "../assets/Spotify_Logo.png";
@@ -5,8 +6,24 @@ import { Link } from "react-router-dom";
 import { Container } from "react-bootstrap";
 
 const SidebarPage = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
+  const handleSearchInputChange = async (e) => {
+    setSearchQuery(e.target.value);
+    if (e.target.value) {
+      const response = await fetch(
+        `https://striveschool-api.herokuapp.com/api/deezer/search?q=${e.target.value}`
+      );
+      const data = await response.json();
+      setSearchResults(data.data);
+    } else {
+      setSearchResults([]);
+    }
+  };
+
   return (
-    <Container fluid sm={2}>
+    <Container sm={2}>
       <nav
         className="navbar navbar-expand-md navbar-white bg-navbar fixed-left justify-content-between"
         id="sidebar"
@@ -49,6 +66,8 @@ const SidebarPage = () => {
                       placeholder="Search"
                       aria-label="Search"
                       aria-describedby="basic-addon2"
+                      value={searchQuery}
+                      onChange={handleSearchInputChange}
                     />
                     <div
                       className="input-group-append"
@@ -63,6 +82,13 @@ const SidebarPage = () => {
                       </button>
                     </div>
                   </div>
+                  <ul>
+                    {searchResults.map((result) => (
+                      <li key={result.id}>
+                        <Link to={`/song/${result.id}`}>{result.title}</Link>
+                      </li>
+                    ))}
+                  </ul>
                 </li>
               </ul>
             </div>

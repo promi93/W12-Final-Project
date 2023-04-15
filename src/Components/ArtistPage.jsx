@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useParams, Link } from "react-router-dom";
@@ -32,7 +33,7 @@ const ArtistPage = () => {
   console.log("artist data:", artist);
 
   return (
-    <Container fluid sm={12} md={9} lg={4} className="offset-md-3" id="mP">
+    <div sm={12} md={9} lg={4} className="offset-md-3" id="mP">
       <Topbar />
       <Row>
         <Col sm={12} md={10} lg={8} xl={4} className="mt-5">
@@ -91,7 +92,7 @@ const ArtistPage = () => {
           </div>
         </Container>
       </Row>
-    </Container>
+    </div>
   );
 };
 

@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 
 import SingleSong from "./SingleSong";
-import { Container, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import TopbarPage from "./TopbarPage";
 
 const HomePage = () => {
@@ -11,7 +11,7 @@ const HomePage = () => {
 
   return (
     <>
-      <Container sm={12} md={9} className="offset-md-3 mainPage">
+      <div sm={12} md={9} lg={6} className="offset-md-3">
         <TopbarPage />
         <Row>
           <Col sm={10}>
@@ -78,7 +78,7 @@ const HomePage = () => {
             </div>
           </Col>
         </Row>
-      </Container>
+      </div>
     </>
   );
 };

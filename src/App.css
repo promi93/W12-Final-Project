@@ -91,6 +91,7 @@ ul {
 #bgPlayer {
   background-color: #282828;
   height: 5.5rem;
+  min-width: 100vw;
 }
 
 #playerRemote a img {
