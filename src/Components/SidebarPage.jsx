@@ -4,18 +4,16 @@ import { BsFillBookFill } from "react-icons/bs";
 import Logo from "../assets/Spotify_Logo.png";
 import { Link } from "react-router-dom";
 import { Container } from "react-bootstrap";
-import { useParams } from "react-router-dom";
 
 const SidebarPage = () => {
-  const params = useParams();
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
-  const handleSearchInputChange = async (state) => {
-    setSearchQuery(params.id);
-    if (params.id) {
+  const handleSearchInputChange = async (e) => {
+    setSearchQuery(e.target.value);
+    if (e.target.value) {
       const response = await fetch(
-        `https://striveschool-api.herokuapp.com/api/deezer/search?q=${params.id}`
+        `https://striveschool-api.herokuapp.com/api/deezer/search?q=${e.target.value}`
       );
       const data = await response.json();
       setSearchResults(data.data);
